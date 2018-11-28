@@ -1,3 +1,5 @@
 ttcn3build/Lib_ServiceManagement.jar
 ttcn3build/.DEPENDENCIES
 build/
+ttcn3build/
+.settings/.clfcache/
