@@ -1,0 +1,29 @@
+module Lib_ServiceManagement {
+	external function startService(ServiceDefinition serviceSpecification)
+		return charstring;
+	external function stopService(ServiceDefinition serviceSpecification)
+		return charstring;
+	external function getServiceStatus(ServiceDefinition serviceSpecification)
+		return charstring;
+
+
+	type record ServiceDefinition {
+		charstring protocol,
+		charstring hostname,
+		union {
+			record {
+				charstring username, charstring password
+			} userPassword,
+			record {
+				charstring idDsa_filename
+			} authPubKey
+		} authentification,
+		record {
+			charstring startCommand optional,
+			charstring stopCommand optional,
+			charstring statusCommand optional
+		} execCommands,
+		charstring returnType
+	}
+
+}
