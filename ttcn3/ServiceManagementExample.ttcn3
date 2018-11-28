@@ -1,0 +1,90 @@
+module ServiceManagementExample {
+	external function startService(ServiceDefinition serviceName)
+		return charstring;
+	external function stopService(ServiceDefinition serviceName)
+		return charstring;
+	external function getServiceStatus(ServiceDefinition serviceName)
+		return charstring;
+
+
+	type record ServiceDefinition {
+		charstring protocol,
+		charstring hostname,
+		union {
+			record {
+				charstring username, charstring password
+			} userPassword,
+			record {
+				charstring idDsa_filename
+			} authPubKey
+		} authentification,
+		record {
+			charstring startCommand optional,
+			charstring stopCommand optional,
+			charstring statusCommand optional
+		} execCommands,
+		charstring returnType
+	}
+
+	modulepar charstring idsa_filename := ".ssh/id_dsa";
+
+	template ServiceDefinition LoginGW := {
+		protocol := "ssh2",
+		hostname := "solv116",
+		authentification := {idDsa_filename := idsa_filename},
+		execCommands := {
+			startCommand := "sudo /etc/init.d/loginggw start",
+			stopCommand := "sudo /etc/init.d/loginggw stop",
+			statusCommand := "/etc/init.d/loginggw status"
+		},
+		returnType :=
+			"exitCode"
+	}
+
+	template ServiceDefinition UserIdService := {
+		protocol := "ssh2",
+		hostname := "solv116",
+		authentification := {idDsa_filename := idsa_filename},
+		execCommands := {
+			startCommand := "sudo /etc/init.d/userid start",
+			stopCommand := "sudo /etc/init.d/userid stop",
+			statusCommand := "/etc/init.d/userid status"
+		},
+		returnType :=
+			"console.output"
+	}
+
+	type component C {
+	}
+
+
+	testcase T() runs on C system C {
+
+		var charstring serviceStat;
+
+		serviceStat := getServiceStatus(LoginGW);
+		if (serviceStat != "0") {
+			setverdict(fail);
+			stop;
+		}
+
+		serviceStat := getServiceStatus(UserIdService);
+		if (serviceStat != "running") {
+			setverdict(fail);
+			stop;
+		}
+
+
+		// execute test function
+		serviceStat := stopService(UserIdService);
+		if (serviceStat != "stopped") {
+			setverdict(fail);
+			stop;
+		}
+		
+		// execute slightly modified test function
+		setverdict(pass);		
+				
+	// execute test function
+	}
+}

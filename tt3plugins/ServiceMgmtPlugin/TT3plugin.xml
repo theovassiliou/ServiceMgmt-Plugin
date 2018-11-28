@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE plugin PUBLIC "-//TESTING TECH//DTD TT3plugin//2.0" "TT3plugin.dtd"> 
+<plugin id="de.vassiliougioles.ttcn.ttwb.functions.ServiceMgmtPlugin" name="ServiceMgmtPlugin" provider-name="Default-Provider" version="1.0.0">
+  <runtime>
+    <library name="../../build/ServiceMgmtPlugin"/>
+  </runtime>
+  <dependency/>
+  <extension point="com.testingtech.ttcn.extension.ExternalFunctionsProvider">
+    <parameter id="class" value="de.vassiliougioles.ttcn.ttwb.functions.ServiceMgmtPlugin"/>
+    <parameter id="name" value="Managing Services via ssh etc"/>
+    <parameter id="description" value="Using ssh to start, stop and query sytem or microservices "/>
+  </extension>
+</plugin>
