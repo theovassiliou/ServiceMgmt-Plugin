@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="com.testingtech.ttworkbench.core.TTWB_LIBRARY"/>
 	<classpathentry kind="src" output="build/ServiceMgmtPlugin" path="ServiceMgmtPlugin"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Ali.Agbaria/Documents/com.jcraft.jsch_0.1.27.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
