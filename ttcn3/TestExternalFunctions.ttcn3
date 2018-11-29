@@ -35,8 +35,9 @@ module TestExternalFunctions {
 
 		log(startService(LoginGW));
 
-		stopService(UserIdService);
+		log(stopService(UserIdService));
+		log(getServiceStatus(LoginGW));
 		
-		getServiceStatus(LoginGW);
+		//getServiceStatus(LoginGW);
 	}
 }
