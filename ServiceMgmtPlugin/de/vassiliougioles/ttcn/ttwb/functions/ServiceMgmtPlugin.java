@@ -30,4 +30,12 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		 logInfo("WE ARE IN EXTERNAL FUNCTIONS STOP");
 		 return null; 
 	 }
+	 
+	 
+	 @ExternalFunction(name = "getServiceStatus", module = "Lib_ServiceManagement")
+	  public CharstringValue getServiceStatus(RecordValue serviceSpec) {
+		 
+		 logInfo("WE ARE IN EXTERNAL FUNCTIONS GETSERVICESTATUS");
+		 return newCharstringValue("running"); 
+	 }
 }

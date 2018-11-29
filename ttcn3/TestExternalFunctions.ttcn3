@@ -18,10 +18,25 @@ module TestExternalFunctions {
 		returnType := "exitCode"
 	}
 
+	template ServiceDefinition UserIdService := {
+		protocol := "ssh2",
+		hostname := "solv116",
+		authentification := {authPubKey := {idDsa_filename := fileName}},
+		execCommands := {
+			startCommand := "sudo /etc/init.d/loginggw start",
+			stopCommand := "sudo /etc/init.d/loginggw stop",
+			statusCommand := "/etc/init.d/loginggw status"
+		},
+		returnType := "exitCode"
+	}
+
+
 	testcase T1() runs on C {
 
 		log(startService(LoginGW));
 
-		stopService(LoginGW);
+		stopService(UserIdService);
+		
+		getServiceStatus(LoginGW);
 	}
 }
