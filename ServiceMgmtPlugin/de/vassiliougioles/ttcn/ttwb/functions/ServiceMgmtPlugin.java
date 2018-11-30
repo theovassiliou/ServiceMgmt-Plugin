@@ -30,7 +30,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		 System.out.println(serviceSpec.getField(fieldNames[1]));
 		 System.out.println(serviceSpec.getField(fieldNames[3]));
 		 System.out.println(serviceSpec.getField(fieldNames[3]));
-		 */
+		
 		 String host= ""+ serviceSpec.getField(fieldNames[1]);
 		 String user= ""+ serviceSpec.getField(fieldNames[2]);
 		 
@@ -51,16 +51,16 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		 System.out.println("auth  "+auth);
 		 System.out.println("command  "+command);
 		 
+		  */
 		 
-		 /*
 			try {
 		            JSch jsch = new JSch();
 
-		            //String user = "wowi";
-		            //String host = "solv116";
+		            String user = "wowi";
+		            String host = "solv116";
 		            int port = 22;
-		            String privateKey = auth;
-		            //String command = " sudo  /etc/init.d/mywowi-login-gateway status";
+		            String privateKey = "H:\\ssh/id_rsa";
+		            String command = " sudo  /etc/init.d/mywowi-services-auth start";
 
 
 	
@@ -106,7 +106,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	
 		        } catch (Exception e) {
 		            e.printStackTrace();
-		        }*/
+		        }
 			
 		 return newCharstringValue("This is a RESULT"); 
 	 }
@@ -123,7 +123,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 System.out.println(serviceSpec.getField(fieldNames[1]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 */
+			 
 			 String host= ""+ serviceSpec.getField(fieldNames[1]);
 			 String user= ""+ serviceSpec.getField(fieldNames[2]);
 			 
@@ -143,17 +143,17 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 System.out.println("user ist "+user);
 			 System.out.println("auth  "+auth);
 			 System.out.println("command  "+command);
+			 */
 			 
 			 
-			 /*
 			 try {
 		            JSch jsch = new JSch();
 
-		            //String user = "wowi";
-		            //String host = "solv116";
+		            String user = "wowi";
+		            String host = "solv116";
 		            int port = 22;
-		            String privateKey = auth;
-		            //String command = " sudo  /etc/init.d/mywowi-login-gateway status";
+		            String privateKey = "H:\\ssh/id_rsa";
+		            String command = " sudo  /etc/init.d/mywowi-services-auth stop";
 
 
 
@@ -199,7 +199,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 
 		        } catch (Exception e) {
 		            e.printStackTrace();
-		        }*/
+		        }
 			
 			 return newCharstringValue("This is a RESULT"); 
 		 
@@ -219,39 +219,37 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 System.out.println(serviceSpec.getField(fieldNames[1]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 */
-			 String host= ""+ serviceSpec.getField(fieldNames[1]);
-			 String user= ""+ serviceSpec.getField(fieldNames[2]);
+			 
+			 String gethost=serviceSpec.getField(fieldNames[1]).toString();
+			 String getuser= new String(serviceSpec.getField(fieldNames[2]).toString());
 			 
 			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
 			 String[] auths= authlist.getFieldNames();
 			 
-			 String auth= ""+ authlist.getField(auths[1]);
+			 String auth=  authlist.getField(auths[1]).toString();
 			 
 			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
 			 String[] commands= commandlist.getFieldNames();
 			 
-			 String command= ""+ commandlist.getField(commands[2]);
+			 String command=  commandlist.getField(commands[2]).toString();
 			 
-			 //String command =""+  serviceSpec.getField(fieldNames[4]);
 			 
-			 System.out.println("Host ist "+host);
-			 System.out.println("user ist "+user);
+			 System.out.println("Host ist "+gethost);
+			 System.out.println("user ist "+getuser);
 			 System.out.println("auth  "+auth);
 			 System.out.println("command  "+command);
 			 
-			 
+			 */
 		 
 		 
 		 try {
 	            JSch jsch = new JSch();
 
-	          //String user = "wowi";
-	            //String host = "solv116";
+	            String user = "wowi";
+	            String host = "solv116";
 	            int port = 22;
-	            String privateKey = auth;
-	            //String command = " sudo  /etc/init.d/mywowi-login-gateway status";
-
+	            String privateKey = "H:\\ssh/id_rsa";
+	            String command = "/etc/init.d/mywowi-services-auth status";
 
 
 	            jsch.addIdentity(privateKey);

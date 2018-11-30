@@ -176,15 +176,16 @@ module TestExternalFunctions {
 
 	testcase T1() runs on C {
 
-		log(startService(LoginGW_start));
-		log(startService(Authservice_start));
-		log(startService(Userservice_start));
-		log(stopService(LoginGW_stop));
-		log(stopService(Authservice_stop));
-		log(stopService(Userservice_stop));
-		log(getServiceStatus(LoginGW_status));
-		log(getServiceStatus(Authservice_status));
-		log(getServiceStatus(Userservice_status));
+		//log(startService(LoginGW_start));
+		//log(startService(Authservice_start));
+		//log(startService(Userservice_start));
+		//log(stopService(LoginGW_stop));
+		//log(stopService(Authservice_stop));
+		//log(stopService(Userservice_stop));
+		//log(getServiceStatus(LoginGW_status));
+		//log(getServiceStatus(Authservice_stop));
+		//log(startService(LoginGW_start));
+		//log(getServiceStatus(Userservice_status));
 		
 
 		//log(stopService(UserIdService));
