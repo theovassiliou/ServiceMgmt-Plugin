@@ -6,6 +6,7 @@ module ServiceManagementExample {
 	template ServiceDefinition LoginGW := {
 		protocol := "ssh2",
 		hostname := "solv116",
+		user := "wowi",
 		authentification := { authPubKey :=  {idDsa_filename := idsa_filename}},
 		execCommands := {
 			startCommand := "sudo /etc/init.d/loginggw start",
@@ -19,6 +20,7 @@ module ServiceManagementExample {
 	template ServiceDefinition UserIdService := {
 		protocol := "ssh2",
 		hostname := "solv116",
+		user := "wowi",
 		authentification := { authPubKey := {idDsa_filename := idsa_filename} },
 		execCommands := {
 			startCommand := "sudo /etc/init.d/userid start",

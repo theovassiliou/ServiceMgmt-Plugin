@@ -10,19 +10,29 @@ module Lib_ServiceManagement {
 	type record ServiceDefinition {
 		charstring protocol,
 		charstring hostname,
-		union {
+		charstring user,
+		/*union {
 			record {
 				charstring username, charstring password
 			} userPassword,
 			record {
 				charstring idDsa_filename
 			} authPubKey
-		} authentification,
+		} authentification,*/
+		
+		record {
+					charstring password optional,
+					charstring idrsa_filename optional
+				} auth,
+				
+				
 		record {
 			charstring startCommand optional,
 			charstring stopCommand optional,
 			charstring statusCommand optional
 		} execCommands,
+				
+			//charstring command,
 		charstring returnType
 	}
 
