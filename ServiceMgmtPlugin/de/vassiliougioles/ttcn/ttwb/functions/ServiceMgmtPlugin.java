@@ -219,9 +219,10 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 System.out.println(serviceSpec.getField(fieldNames[1]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
+			  */
 			 
 			 String gethost=serviceSpec.getField(fieldNames[1]).toString();
-			 String getuser= new String(serviceSpec.getField(fieldNames[2]).toString());
+			 String getuser= ""+serviceSpec.getField(fieldNames[2]);
 			 
 			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
 			 String[] auths= authlist.getFieldNames();
@@ -231,22 +232,28 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
 			 String[] commands= commandlist.getFieldNames();
 			 
-			 String command=  commandlist.getField(commands[2]).toString();
+			 String commando=  commandlist.getField(commands[2]).toString();
 			 
 			 
 			 System.out.println("Host ist "+gethost);
 			 System.out.println("user ist "+getuser);
 			 System.out.println("auth  "+auth);
-			 System.out.println("command  "+command);
+			 System.out.println("command  "+commando);
 			 
-			 */
+			
 		 
 		 
 		 try {
+			 System.out.println(commando);
+			 System.out.println(gethost);
+			 System.out.println(getuser);
+			 
 	            JSch jsch = new JSch();
 
-	            String user = "wowi";
+	            String user = ""+"wowi";
 	            String host = "solv116";
+	            //boolean an= user==(getuser);
+	           // System.out.println(an);
 	            int port = 22;
 	            String privateKey = "H:\\ssh/id_rsa";
 	            String command = "/etc/init.d/mywowi-services-auth status";
