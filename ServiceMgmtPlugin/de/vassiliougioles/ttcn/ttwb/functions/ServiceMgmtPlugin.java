@@ -29,9 +29,10 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		
 		 System.out.println(serviceSpec.getField(fieldNames[1]));
 		 System.out.println(serviceSpec.getField(fieldNames[3]));
-		 System.out.println(serviceSpec.getField(fieldNames[3]));
+		 System.out.println(serviceSpec.getField(fieldNames[3])); 
+		  
 		
-		 String host= ""+ serviceSpec.getField(fieldNames[1]);
+		 String host= serviceSpec.getField(fieldNames[1]).toString();
 		 String user= ""+ serviceSpec.getField(fieldNames[2]);
 		 
 		 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
@@ -50,8 +51,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		 System.out.println("user ist "+user);
 		 System.out.println("auth  "+auth);
 		 System.out.println("command  "+command);
-		 
-		  */
+		*/
 		 
 			try {
 		            JSch jsch = new JSch();
@@ -219,10 +219,10 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 System.out.println(serviceSpec.getField(fieldNames[1]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
 			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			  */
+			 
 			 
 			 String gethost=serviceSpec.getField(fieldNames[1]).toString();
-			 String getuser= ""+serviceSpec.getField(fieldNames[2]);
+			
 			 
 			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
 			 String[] auths= authlist.getFieldNames();
@@ -236,27 +236,42 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 
 			 
 			 System.out.println("Host ist "+gethost);
-			 System.out.println("user ist "+getuser);
+			 System.out.println("user eingelesen ist "+user);
 			 System.out.println("auth  "+auth);
 			 System.out.println("command  "+commando);
-			 
+			  */
 			
 		 
 		 
 		 try {
-			 System.out.println(commando);
-			 System.out.println(gethost);
-			 System.out.println(getuser);
+			 //System.out.println(commando);
+			 //System.out.println(gethost);
+			 //System.out.println(user);
 			 
+			 String user= serviceSpec.getField(fieldNames[2]).toString();
+			 user = user.replaceAll("\"", "");
+			 String host= serviceSpec.getField(fieldNames[1]).toString();
+			 host = host.replaceAll("\"", "");
+			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
+			 String[] auths= authlist.getFieldNames();
+			 String privateKey=  authlist.getField(auths[1]).toString();
+			 privateKey = privateKey.replaceAll("\"", "");
+			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
+			 String[] commands= commandlist.getFieldNames();
+			 
+			 String command=  commandlist.getField(commands[2]).toString();
+			 command = command.replaceAll("\"", "");
 	            JSch jsch = new JSch();
 
-	            String user = ""+"wowi";
-	            String host = "solv116";
-	            //boolean an= user==(getuser);
-	           // System.out.println(an);
+	           //String user = "wowi";
+	           // String host = "solv116";
+	           // boolean an= user.equals(serviceuser);
+	          // System.out.println("serviceuser ist "+ serviceuser);
+	           System.out.println("command ist "+ command);
+	         //  System.out.println("Vergleich ist "+ an);
 	            int port = 22;
-	            String privateKey = "H:\\ssh/id_rsa";
-	            String command = "/etc/init.d/mywowi-services-auth status";
+	           // String privateKey = "H:\\ssh/id_rsa";
+	            //String command = " /etc/init.d/mywowi-services-auth status";
 
 
 	            jsch.addIdentity(privateKey);
