@@ -2,6 +2,7 @@ package de.vassiliougioles.ttcn.ttwb.functions;
 
 import org.etsi.ttcn.tci.CharstringValue;
 import org.etsi.ttcn.tci.RecordValue;
+import org.etsi.ttcn.tci.TciTypeClass;
 import org.etsi.ttcn.tci.Value;
 
 import com.testingtech.ttcn.annotation.ExternalFunction;
@@ -248,10 +249,8 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 //System.out.println(gethost);
 			 //System.out.println(user);
 			 
-			 String user= serviceSpec.getField(fieldNames[2]).toString();
-			 user = user.replaceAll("\"", "");
-			 String host= serviceSpec.getField(fieldNames[1]).toString();
-			 host = host.replaceAll("\"", "");
+			 String user= ((CharstringValue) serviceSpec.getField(fieldNames[2])).getString();
+			 String host= ((CharstringValue) serviceSpec.getField(fieldNames[1])).getString();
 			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
 			 String[] auths= authlist.getFieldNames();
 			 String privateKey=  authlist.getField(auths[1]).toString();
