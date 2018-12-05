@@ -23,46 +23,25 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 
 		 
 		 String[] fieldNames = serviceSpec.getFieldNames();
-		/* 
-		 for (String string : fieldNames) {
-			 System.out.println("The field name is " + string + " and the values are " + serviceSpec.getField(string));
-		}
 		
-		 System.out.println(serviceSpec.getField(fieldNames[1]));
-		 System.out.println(serviceSpec.getField(fieldNames[3]));
-		 System.out.println(serviceSpec.getField(fieldNames[3])); 
-		  
-		
-		 String host= serviceSpec.getField(fieldNames[1]).toString();
-		 String user= ""+ serviceSpec.getField(fieldNames[2]);
-		 
-		 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
-		 String[] auths= authlist.getFieldNames();
-		 
-		 String auth= ""+ authlist.getField(auths[1]);
-		 
-		 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
-		 String[] commands= commandlist.getFieldNames();
-		 
-		 String command= ""+ commandlist.getField(commands[0]);
-		 
-		 //String command =""+  serviceSpec.getField(fieldNames[4]);
-		 
-		 System.out.println("Host ist "+host);
-		 System.out.println("user ist "+user);
-		 System.out.println("auth  "+auth);
-		 System.out.println("command  "+command);
-		*/
-		 
+	 
 			try {
+				 String user= ((CharstringValue) serviceSpec.getField("user")).getString();
+				 String host= ((CharstringValue) serviceSpec.getField("hostname")).getString();
+				 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
+				 String[] auths= authlist.getFieldNames();
+				 String privateKey=  ((CharstringValue) authlist.getField("idrsa_filename")).getString();
+				 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
+				 String[] commands= commandlist.getFieldNames();
+				 
+				 String command= ((CharstringValue) commandlist.getField("startCommand")).getString();
 		            JSch jsch = new JSch();
 
-		            String user = "wowi";
-		            String host = "solv116";
-		            int port = 22;
-		            String privateKey = "H:\\ssh/id_rsa";
-		            String command = " sudo  /etc/init.d/mywowi-services-auth start";
 
+
+		            System.out.println("host ist "+ host);
+			         //  System.out.println("Vergleich ist "+ an);
+			            int port = 22;
 
 	
 		            jsch.addIdentity(privateKey);
@@ -116,48 +95,27 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	 @ExternalFunction(name = "stopService", module = "Lib_ServiceManagement")
 	  public CharstringValue stopService(RecordValue serviceSpec) {
 		 String[] fieldNames = serviceSpec.getFieldNames();
-			/* 
-			 for (String string : fieldNames) {
-				 System.out.println("The field name is " + string + " and the values are " + serviceSpec.getField(string));
-			}
 			
-			 System.out.println(serviceSpec.getField(fieldNames[1]));
-			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 
-			 String host= ""+ serviceSpec.getField(fieldNames[1]);
-			 String user= ""+ serviceSpec.getField(fieldNames[2]);
-			 
-			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
-			 String[] auths= authlist.getFieldNames();
-			 
-			 String auth= ""+ authlist.getField(auths[1]);
-			 
-			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
-			 String[] commands= commandlist.getFieldNames();
-			 
-			 String command= ""+ commandlist.getField(commands[1]);
-			 
-			 //String command =""+  serviceSpec.getField(fieldNames[4]);
-			 
-			 System.out.println("Host ist "+host);
-			 System.out.println("user ist "+user);
-			 System.out.println("auth  "+auth);
-			 System.out.println("command  "+command);
-			 */
 			 
 			 
 			 try {
+				 String user= ((CharstringValue) serviceSpec.getField("user")).getString();
+				 String host= ((CharstringValue) serviceSpec.getField("hostname")).getString();
+				 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
+				 String[] auths= authlist.getFieldNames();
+				 String privateKey=  ((CharstringValue) authlist.getField("idrsa_filename")).getString();
+				 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
+				 String[] commands= commandlist.getFieldNames();
+				 
+				 String command= ((CharstringValue) commandlist.getField("stopCommand")).getString();
 		            JSch jsch = new JSch();
 
-		            String user = "wowi";
-		            String host = "solv116";
-		            int port = 22;
-		            String privateKey = "H:\\ssh/id_rsa";
-		            String command = " sudo  /etc/init.d/mywowi-services-auth stop";
 
 
-
+		            System.out.println("host ist "+ host);
+			         //  System.out.println("Vergleich ist "+ an);
+			            int port = 22;
+			           
 		            jsch.addIdentity(privateKey);
 		            System.out.println("identity added ");
 
@@ -212,66 +170,28 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	  public CharstringValue getServiceStatus(RecordValue serviceSpec) {
 		 
 		 String[] fieldNames = serviceSpec.getFieldNames();
-			/* 
-			 for (String string : fieldNames) {
-				 System.out.println("The field name is " + string + " and the values are " + serviceSpec.getField(string));
-			}
-			
-			 System.out.println(serviceSpec.getField(fieldNames[1]));
-			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 System.out.println(serviceSpec.getField(fieldNames[3]));
-			 
-			 
-			 String gethost=serviceSpec.getField(fieldNames[1]).toString();
-			
-			 
-			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
-			 String[] auths= authlist.getFieldNames();
-			 
-			 String auth=  authlist.getField(auths[1]).toString();
-			 
-			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
-			 String[] commands= commandlist.getFieldNames();
-			 
-			 String commando=  commandlist.getField(commands[2]).toString();
-			 
-			 
-			 System.out.println("Host ist "+gethost);
-			 System.out.println("user eingelesen ist "+user);
-			 System.out.println("auth  "+auth);
-			 System.out.println("command  "+commando);
-			  */
+		
 			
 		 
 		 
 		 try {
-			 //System.out.println(commando);
-			 //System.out.println(gethost);
-			 //System.out.println(user);
-			 
-			 String user= ((CharstringValue) serviceSpec.getField(fieldNames[2])).getString();
-			 String host= ((CharstringValue) serviceSpec.getField(fieldNames[1])).getString();
+			
+			 String user= ((CharstringValue) serviceSpec.getField("user")).getString();
+			 String host= ((CharstringValue) serviceSpec.getField("hostname")).getString();
 			 RecordValue authlist = (RecordValue) serviceSpec.getField(fieldNames[3]);
 			 String[] auths= authlist.getFieldNames();
-			 String privateKey=  authlist.getField(auths[1]).toString();
-			 privateKey = privateKey.replaceAll("\"", "");
+			 String privateKey=  ((CharstringValue) authlist.getField("idrsa_filename")).getString();
 			 RecordValue commandlist = (RecordValue) serviceSpec.getField(fieldNames[4]);
 			 String[] commands= commandlist.getFieldNames();
 			 
-			 String command=  commandlist.getField(commands[2]).toString();
-			 command = command.replaceAll("\"", "");
+			 String command= ((CharstringValue) commandlist.getField("statusCommand")).getString();
 	            JSch jsch = new JSch();
 
-	           //String user = "wowi";
-	           // String host = "solv116";
-	           // boolean an= user.equals(serviceuser);
-	          // System.out.println("serviceuser ist "+ serviceuser);
-	           System.out.println("command ist "+ command);
+	           
+	           System.out.println("funktioniert? ist "+ command);
 	         //  System.out.println("Vergleich ist "+ an);
 	            int port = 22;
-	           // String privateKey = "H:\\ssh/id_rsa";
-	            //String command = " /etc/init.d/mywowi-services-auth status";
-
+	           
 
 	            jsch.addIdentity(privateKey);
 	            System.out.println("identity added ");
