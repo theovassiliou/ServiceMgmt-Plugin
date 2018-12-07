@@ -23,7 +23,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 
 		 
 		 String[] fieldNames = serviceSpec.getFieldNames();
-		
+		 String output="";
 	 
 			try {
 				 String user= ((CharstringValue) serviceSpec.getField("user")).getString();
@@ -70,7 +70,8 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		                    if (i < 0) {
 		                        break;
 		                    }
-		                    System.out.print(new String(tmp, 0, i));
+		                    output=(new String(tmp, 0, i));
+			                System.out.print(output);
 		                }
 		                if (channel.isClosed()) {
 		                    System.out.println("Exit Status: "
@@ -87,15 +88,18 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		        }
-			
-		 return newCharstringValue("This is a RESULT"); 
+			 String[] parts = output.split("d");
+			 String status = parts[0] +"d";
+			 System.out.print(status);
+			 return newCharstringValue(status); 
+		  
 	 }
 	 
 	 
 	 @ExternalFunction(name = "stopService", module = "Lib_ServiceManagement")
 	  public CharstringValue stopService(RecordValue serviceSpec) {
 		 String[] fieldNames = serviceSpec.getFieldNames();
-			
+		 String output="";
 			 
 			 
 			 try {
@@ -142,7 +146,9 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		                    if (i < 0) {
 		                        break;
 		                    }
-		                    System.out.print(new String(tmp, 0, i));
+		     
+		                    output=(new String(tmp, 0, i));
+			                System.out.print(output);
 		                }
 		                if (channel.isClosed()) {
 		                    System.out.println("Exit Status: "
@@ -159,8 +165,12 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		        }
+			 String[] parts = output.split("d");
+			 String status = parts[0] +"d";
+			 System.out.print(status);
+			 return newCharstringValue(status); 
 			
-			 return newCharstringValue("This is a RESULT"); 
+			
 		 
 		 
 	 }
@@ -171,7 +181,7 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 		 
 		 String[] fieldNames = serviceSpec.getFieldNames();
 		
-			
+		 String output="";
 		 
 		 
 		 try {
@@ -188,8 +198,8 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	            JSch jsch = new JSch();
 
 	           
-	           System.out.println("funktioniert? ist "+ command);
-	         //  System.out.println("Vergleich ist "+ an);
+	           //System.out.println(command);
+	        
 	            int port = 22;
 	           
 
@@ -213,13 +223,15 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	            channel.connect();
 	            System.out.println("Connected...");
 	            byte[] tmp = new byte[1024];
+	            
 	            while (true) {
 	                while (in.available() > 0) {
-	                    int i = in.read(tmp, 0, 1024);
+	                    int i = in.read(tmp, 0, 512);
 	                    if (i < 0) {
 	                        break;
 	                    }
-	                    System.out.print(new String(tmp, 0, i));
+	                    output=(new String(tmp, 0, i));
+	                   System.out.print(output);
 	                }
 	                if (channel.isClosed()) {
 	                    System.out.println("Exit Status: "
@@ -236,6 +248,9 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		 return newCharstringValue("This is a RESULT"); 
+		 String[] parts = output.split("g");
+		 String status = parts[0] +"g";
+		 System.out.print(status);
+		 return newCharstringValue(status); 
 	 }
 }

@@ -175,7 +175,9 @@ module TestExternalFunctions {
 
 
 	testcase T1() runs on C {
-
+		const charstring antwort := getServiceStatus(Authservice_status);
+		log("the antwort is ");
+		log(antwort);
 		//log(startService(LoginGW_start));
 		//log(startService(Authservice_start));
 		//log(startService(Userservice_start));
@@ -192,5 +194,33 @@ module TestExternalFunctions {
 		//log(getServiceStatus(LoginGW_stop));
 		
 		log(getServiceStatus(Authservice_status));
+	}
+	
+	
+	testcase T3() runs on C system C {
+
+		var charstring serviceStat := getServiceStatus(Authservice_status);
+		const charstring antwort:= "Running";
+		
+		log(serviceStat);
+		log(antwort);
+
+		if (serviceStat == antwort) {
+			setverdict(pass);
+			stop;
+		}
+		if (serviceStat != antwort) {
+				setverdict(fail);
+				stop;
+			}
+
+
+		// execute test function
+		
+		
+		// execute slightly modified test function
+			
+				
+	// execute test function
 	}
 }
