@@ -195,14 +195,8 @@ public class ServiceMgmtPlugin extends AnnotationsExternalFunctionPlugin {
 			 String[] commands= commandlist.getFieldNames();
 			 
 			 String command= ((CharstringValue) commandlist.getField("statusCommand")).getString();
-	            JSch jsch = new JSch();
-
-	           
-	           //System.out.println(command);
-	        
+	            JSch jsch = new JSch();   
 	            int port = 22;
-	           
-
 	            jsch.addIdentity(privateKey);
 	            System.out.println("identity added ");
 
