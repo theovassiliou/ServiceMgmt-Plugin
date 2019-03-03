@@ -5,138 +5,14 @@ module TestExternalFunctions {
 	}
 
 	const charstring fileName := "H:\\ssh/id_rsa";
-	//external function getServiceStatus(ServiceDefinition LoginGW) return charstring ;
 
-		
-
-	//external function startService(ServiceDefinition LoginGW) return charstring;
-
-	template ServiceDefinition LoginGW_start := {
-		protocol := "ssh2",
-		hostname := "solv116",
-		user := "wowi",
-		//authentification := {authPubKey := {idDsa_filename := fileName}},
-		auth := {
-			idrsa_filename := fileName
-			
-				},
-		execCommands := {
-					startCommand := "sudo  /etc/init.d/mywowi-login-gateway start",
-					stopCommand := "sudo  /etc/init.d/mywowi-login-gateway stop",
-					statusCommand :="sudo  /etc/init.d/mywowi-login-gateway status"
-				},
 	
-			//command := "sudo  /etc/init.d/mywowi-login-gateway start",
-		returnType := "exitCode"
-	}
-	template ServiceDefinition LoginGW_stop := {
-			protocol := "ssh2",
-			hostname := "solv116",
-			user := "wowi",
-			//authentification := {authPubKey := {idDsa_filename := fileName}},
-			auth := {
-				idrsa_filename := fileName
-			
-					},
+	/* In dieser Klasse werden die Funktionalitäten der externen Funktionen wie z.B. getServiceStatus getestet.
+	 * 
+	 * * Ein Template mit allen benötigten Informationen wurde vorbereitet, damit die Methode getServiceStatus aufgerufen werden kann.
+	 */
 	
-				//command := "sudo  /etc/init.d/mywowi-login-gateway stop",
-		execCommands := {
-					startCommand := "sudo  /etc/init.d/mywowi-login-gateway start",
-					stopCommand := "sudo  /etc/init.d/mywowi-login-gateway stop",
-					statusCommand :="sudo  /etc/init.d/mywowi-login-gateway status"
-				},
 	
-			returnType := "exitCode"
-		}
-	template ServiceDefinition LoginGW_status := {
-			protocol := "ssh2",
-			hostname := "solv116",
-			user := "wowi",
-			//authentification := {authPubKey := {idDsa_filename := fileName}},
-			auth := {
-				idrsa_filename := fileName
-			
-					},
-			execCommands := {
-						startCommand := "sudo  /etc/init.d/mywowi-login-gateway start",
-						stopCommand := "sudo  /etc/init.d/mywowi-login-gateway stop",
-						statusCommand :="sudo  /etc/init.d/mywowi-login-gateway status"
-					},
-	
-				//command := "sudo  /etc/init.d/mywowi-login-gateway start",
-			returnType := "exitCode"
-		}
-
-	template ServiceDefinition Userservice_start := {
-		protocol := "ssh2",
-		hostname := "solv116",
-		user := "wowi",
-		//authentification := {authPubKey := {idDsa_filename := fileName}},
-		auth := {
-					idrsa_filename := fileName
-			
-						},
-		//command := "sudo  /etc/init.d/mywowi-services-user start",
-		execCommands := {
-					startCommand := "sudo  /etc/init.d/mywowi-services-user start",
-					stopCommand := "sudo  /etc/init.d/mywowi-services-user stop",
-					statusCommand :="sudo  /etc/init.d/mywowi-services-user status"
-				},
-	
-		returnType := "exitCode"
-	}
-	template ServiceDefinition Userservice_stop := {
-			protocol := "ssh2",
-			hostname := "solv116",
-			user := "wowi",
-			//authentification := {authPubKey := {idDsa_filename := fileName}},
-			auth := {
-						idrsa_filename := fileName
-			
-							},
-			//command := "sudo  /etc/init.d/mywowi-services-user stop",
-		execCommands := {
-							startCommand := "sudo  /etc/init.d/mywowi-services-user start",
-							stopCommand := "sudo  /etc/init.d/mywowi-services-user stop",
-							statusCommand :="sudo  /etc/init.d/mywowi-services-user status"
-						},
-			returnType := "exitCode"
-		}
-	template ServiceDefinition Userservice_status := {
-				protocol := "ssh2",
-				hostname := "solv116",
-				user := "wowi",
-				//authentification := {authPubKey := {idDsa_filename := fileName}},
-				auth := {
-							idrsa_filename := fileName
-			
-								},
-				//command := "sudo  /etc/init.d/mywowi-services-user stop",
-			execCommands := {
-								startCommand := "sudo  /etc/init.d/mywowi-services-user start",
-								stopCommand := "sudo  /etc/init.d/mywowi-services-user stop",
-								statusCommand :="sudo  /etc/init.d/mywowi-services-user status"
-							},
-				returnType := "exitCode"
-			}
-	template ServiceDefinition Authservice_start := {
-			protocol := "ssh2",
-			hostname := "solv116",
-			user := "wowi",
-			//authentification := {authPubKey := {idDsa_filename := fileName}},
-			auth := {
-						idrsa_filename := fileName
-			
-							},
-			//command := "sudo  /etc/init.d/mywowi-services-auth start",
-		execCommands := {
-					startCommand := "sudo  /etc/init.d/mywowi-services-auth start",
-					stopCommand := "sudo  /etc/init.d/mywowi-services-auth stop",
-					statusCommand :="sudo  /etc/init.d/mywowi-services-auth status"
-				},
-		returnType := "exitCode" 
-		}
-		
 	template ServiceDefinition Authservice_status := {
 			protocol := "ssh2",
 			hostname := "solv116",
@@ -154,49 +30,15 @@ module TestExternalFunctions {
 				},
 			returnType := "exitCode"
 		}
-		template ServiceDefinition Authservice_stop := {
-			protocol := "ssh2",
-			hostname := "solv116",
-			user := "wowi",
-			//authentification := {authPubKey := {idDsa_filename := fileName}},
-			auth := {
-						idrsa_filename := fileName
-			
-							},
-			//command := "sudo  /etc/init.d/mywowi-services-auth stop",
-		execCommands := {
-					startCommand := "sudo  /etc/init.d/mywowi-services-auth start",
-					stopCommand := "sudo  /etc/init.d/mywowi-services-auth stop",
-					statusCommand :="sudo  /etc/init.d/mywowi-services-auth status"
-				},
-			returnType := "exitCode"
-		}
 		
 
 
-	testcase T1() runs on C {
-		const charstring antwort := getServiceStatus(Authservice_status);
-		log("the antwort is ");
-		log(antwort);
-		//log(startService(LoginGW_start));
-		//log(startService(Authservice_start));
-		//log(startService(Userservice_start));
-		//log(stopService(LoginGW_stop));
-		//log(stopService(Authservice_stop));
-		//log(stopService(Userservice_stop));
-		//log(getServiceStatus(LoginGW_status));
-		//log(getServiceStatus(Authservice_stop));
-		//log(startService(LoginGW_start));
-		//log(getServiceStatus(Userservice_status));
-		
-
-		//log(stopService(UserIdService));
-		//log(getServiceStatus(LoginGW_stop));
-		
-		log(getServiceStatus(Authservice_status));
-	}
 	
 	
+	/*In dem folgenden Testfall wird die Methode getServiceStatus auf den Authservice getestet. 
+	 * Es wird erwartet, dass dieser Service gerade läuft und nicht ausgefallen ist. 
+	 */ 
+		
 	testcase T3() runs on C system C {
 
 		var charstring serviceStat := getServiceStatus(Authservice_status);
@@ -215,12 +57,5 @@ module TestExternalFunctions {
 			}
 
 
-		// execute test function
-		
-		
-		// execute slightly modified test function
-			
-				
-	// execute test function
 	}
 }

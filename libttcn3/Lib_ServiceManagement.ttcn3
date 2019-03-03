@@ -1,4 +1,10 @@
 module Lib_ServiceManagement {
+	
+	/*
+	 * In diesem Modul wird die Struktur der benötigten externen Funktionen zum Steuern der Services definiert. 
+	 * Insgesamt werden drei Methoden verwendet: 1) Start 2) Stop  3) getStatus
+	 * Diese Funktionen müssen auch in den Javaklassen so heißen, damit sie richtig und wie erwartet funktionieren.
+	 */
 	external function startService(ServiceDefinition serviceSpecification)
 		return charstring;
 	external function stopService(ServiceDefinition serviceSpecification)
@@ -6,20 +12,16 @@ module Lib_ServiceManagement {
 	external function getServiceStatus(ServiceDefinition serviceSpecification)
 		return charstring;
 
-
+	/* 
+	 * Hier wird die Struktur eines Services dargestellt. 
+	 * Damit ein Service über SSH gesteuert werden kann, sind die folgenden Infos für den Aufbau der Verbindung wichtig:
+	 * 1) Protokollname  2) Hostname   3) User   4) Authentifizierung über SSH-Key oder über Kennwort  
+	 * 5) Die Kommand-Befehle, die durchgeführt werden.
+	 */
 	type record ServiceDefinition {
 		charstring protocol,
 		charstring hostname,
 		charstring user,
-		/*union {
-			record {
-				charstring username, charstring password
-			} userPassword,
-			record {
-				charstring idDsa_filename
-			} authPubKey
-		} authentification,*/
-		
 		record {
 					charstring password optional,
 					charstring idrsa_filename optional
@@ -32,7 +34,6 @@ module Lib_ServiceManagement {
 			charstring statusCommand optional
 		} execCommands,
 				
-			//charstring command,
 		charstring returnType
 	}
 
